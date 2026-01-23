@@ -10,3 +10,6 @@ class EntryYearView :
     def create_entry ( self ) :
         EntryYearView.__entry = Entry( EntryYearView.__window, justify = CENTER, width = 4 )
         EntryYearView.__entry.grid( row = 1, column = 0 )
+
+    def clean_field ( self ) :
+        EntryYearView.__entry.delete(0, END)

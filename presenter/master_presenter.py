@@ -27,8 +27,14 @@ class MasterPresenter :
     __entry_hours_view = EntryHoursView( __window )
     __entry_minutes_view = EntryMinutesView( __window )
     __text_view = TextView()
-    __button_reject_view = ButtonRejectView( __window )
+    __button_reject_view = None
     __button_apply_view = ButtonApplyView( __window )
+
+    def __init__( self ):
+        MasterPresenter.__button_reject_view = ButtonRejectView( 
+            MasterPresenter.__window,
+            self.handler_clean_field_form
+            )
 
     def initialization ( self ) :
         MasterPresenter.__window.title( 'Блокнот' )
@@ -54,3 +60,13 @@ class MasterPresenter :
         MasterPresenter.__button_apply_view.create_button()
         
         MasterPresenter.__window.mainloop()
+
+    def handler_clean_field_form ( self ) :
+        MasterPresenter.__entry_year_view.clean_field()
+        MasterPresenter.__entry_month_view.clean_field()
+        MasterPresenter.__entry_number_view.clean_field()
+
+        MasterPresenter.__entry_hours_view.clean_field()
+        MasterPresenter.__entry_minutes_view.clean_field()
+
+        MasterPresenter.__text_view.clean_field()

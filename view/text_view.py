@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import ttk
 
 class TextView :
-
     __text = None
 
     def create_text ( self ) :
@@ -13,3 +12,6 @@ class TextView :
         ys.place( height = 70, x = 225, y = 95 )
 
         TextView.__text["yscrollcommand"] = ys.set
+
+    def clean_field ( self ) :
+        TextView.__text.delete("1.0", END)

@@ -10,3 +10,6 @@ class EntryMinutesView :
     def create_entry ( self ) :
         EntryMinutesView.__entry = Entry( EntryMinutesView.__window, justify = CENTER, width = 4 )
         EntryMinutesView.__entry.grid( row = 3, column = 1 )
+
+    def clean_field ( self ) :
+        EntryMinutesView.__entry.delete(0, END)
