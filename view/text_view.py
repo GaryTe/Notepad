@@ -15,3 +15,8 @@ class TextView :
 
     def clean_field ( self ) :
         TextView.__text.delete("1.0", END)
+
+    def get_text (self) :
+        text = TextView.__text.get("1.0", "end")
+        
+        return text

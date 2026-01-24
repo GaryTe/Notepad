@@ -13,3 +13,8 @@ class EntryMonthView :
 
     def clean_field ( self ) :
         EntryMonthView.__entry.delete(0, END)
+
+    def get_value (self) :
+        value = EntryMonthView.__entry.get()
+
+        return value

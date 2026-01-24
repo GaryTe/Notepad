@@ -13,3 +13,8 @@ class EntryYearView :
 
     def clean_field ( self ) :
         EntryYearView.__entry.delete(0, END)
+
+    def get_value (self) :
+        value = EntryYearView.__entry.get()
+        
+        return value

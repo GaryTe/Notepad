@@ -13,3 +13,8 @@ class EntryMinutesView :
 
     def clean_field ( self ) :
         EntryMinutesView.__entry.delete(0, END)
+
+    def get_value (self) :
+        value = EntryMinutesView.__entry.get()
+
+        return value

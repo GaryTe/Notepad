@@ -13,3 +13,8 @@ class EntryHoursView :
 
     def clean_field ( self ) :
         EntryHoursView.__entry.delete(0, END)
+
+    def get_value (self) :
+        value = EntryHoursView.__entry.get()
+
+        return value

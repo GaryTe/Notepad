@@ -13,3 +13,8 @@ class EntryNumberView :
 
     def clean_field ( self ) :
         EntryNumberView.__entry.delete(0, END)
+
+    def get_value (self) :
+        value = EntryNumberView.__entry.get()
+
+        return value
