@@ -23,7 +23,7 @@ class ButtonApplyView :
     def __write_data ( self ) :
         data = ButtonApplyView.__handler_writing_text()
 
-        with open('data_note', 'a') as file :
+        with open('data_note.txt', 'a') as file :
             file.write(data)
 
-        ButtonApplyView.__handler_clean_field_form()
+        ButtonApplyView.__handler_clean_field_form(data, is_flag = True)

@@ -1,5 +1,7 @@
+import threading
+
 from presenter.master_presenter import *
 
 master_presenter = MasterPresenter()
 
-master_presenter.initialization()
+master_presenter.main()

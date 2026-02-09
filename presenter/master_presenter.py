@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.messagebox import showinfo
 
 from view.label_year_view import *
 from view.label_month_view import *
@@ -13,6 +14,7 @@ from view.entry_minutes_view import *
 from view.text_view import *
 from view.button_reject_view import *
 from view.button_apply_view import *
+from model.event_notification_model import *
 
 class MasterPresenter :
     __window = Tk()
@@ -30,6 +32,8 @@ class MasterPresenter :
     __button_reject_view = None
     __button_apply_view = None
 
+    __event_notification_model = EventNotificationModel()
+
     def __init__( self ):
         MasterPresenter.__button_reject_view = ButtonRejectView( 
             MasterPresenter.__window,
@@ -41,7 +45,7 @@ class MasterPresenter :
             self.handler_clean_field_form
         )
 
-    def initialization ( self ) :
+    def __initialization ( self ) :
         MasterPresenter.__window.title( 'Блокнот' )
         MasterPresenter.__window.resizable( 0, 0 )
 
@@ -63,10 +67,15 @@ class MasterPresenter :
 
         MasterPresenter.__button_reject_view.create_button()
         MasterPresenter.__button_apply_view.create_button()
-        
+
         MasterPresenter.__window.mainloop()
 
-    def handler_clean_field_form ( self ) :
+    def main (self) :
+        MasterPresenter.__event_notification_model.start_notification()
+        
+        self.__initialization()
+
+    def handler_clean_field_form ( self, text = None, is_flag = False ) :
         MasterPresenter.__entry_year_view.clean_field()
         MasterPresenter.__entry_month_view.clean_field()
         MasterPresenter.__entry_number_view.clean_field()
@@ -75,6 +84,12 @@ class MasterPresenter :
         MasterPresenter.__entry_minutes_view.clean_field()
 
         MasterPresenter.__text_view.clean_field()
+
+        if is_flag :
+            MasterPresenter.__event_notification_model.start_notification(text)
+            showinfo('Сообщение', 'Запись в блокнот добавлена')
+        else :
+            showinfo('Сообщение', 'Запись в блокнот не добавлена')
 
     def handler_writing_text ( self ) :
         year = MasterPresenter.__entry_year_view.get_value()
