@@ -28,8 +28,7 @@ class EventNotificationModel :
                 if date_time == time :
                     threading.Thread(
                         target=showinfo, 
-                        args=('Сообщение', task), 
-                        daemon=True, 
+                        args=('Сообщение', task),  
                         name=f'EventNotificationModel_showinfo_{date_time}'
                         ).start()
                     tasks_list.remove(task)
@@ -37,18 +36,21 @@ class EventNotificationModel :
         EventNotificationModel.is_start_notification = False
  
     def __get_task (self, date, time) :
-        with open('data_note.txt', 'r') as data_tasts_list :
-            for task in data_tasts_list :
-                data_task = task.split('/')[0]
+        try:
+            with open('data_note.txt', 'r') as data_tasts_list :
+                for task in data_tasts_list :
+                    data_task = task.split('/')[0]
 
-                date_task = data_task.split(' ')[0]
-                time_task = data_task.split(' ')[1]
+                    date_task = data_task.split(' ')[0]
+                    time_task = data_task.split(' ')[1]
 
-                if date == date_task and time_task >= time :
-                    EventNotificationModel.__tasks_list.append(task)
-    
-        if len(EventNotificationModel.__tasks_list) > 0 :
-            self.__call_task(EventNotificationModel.__tasks_list)
+                    if date == date_task and time_task >= time :
+                        EventNotificationModel.__tasks_list.append(task)
+        except FileNotFoundError :
+            return
+        else:
+            if len(EventNotificationModel.__tasks_list) > 0 :
+                self.__call_task(EventNotificationModel.__tasks_list)
 
     def __get_date_time (self) :
         struct_time = localtime(time())
@@ -60,8 +62,7 @@ class EventNotificationModel :
     def start_notification (self, text = None) :
         if not EventNotificationModel.is_start_notification :
             threading.Thread( 
-            target = self.__get_date_time, 
-            daemon = True, 
+            target = self.__get_date_time,  
             name = 'EventNotificationModel_start_notification' 
             ).start()
         else:

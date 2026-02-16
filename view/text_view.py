@@ -6,10 +6,10 @@ class TextView :
 
     def create_text ( self ) :
         TextView.__text = Text( bd = 3, height = 4, width = 24, wrap = 'word' )
-        TextView.__text.grid( row = 4, columnspan = 3, pady = 4 )
+        TextView.__text.grid( row = 5, columnspan = 3, pady = 4 )
 
         ys = ttk.Scrollbar( orient = "vertical", command = TextView.__text.yview )
-        ys.place( height = 70, x = 225, y = 95 )
+        ys.place( height = 70, x = 240, y = 187 )
 
         TextView.__text["yscrollcommand"] = ys.set
 

@@ -9,4 +9,4 @@ class LabelMinutesView :
 
     def create_label ( self ) :
         LabelMinutesView.__label = Label( LabelMinutesView.__window, text = 'минуты', padx = 20, pady = 4 )
-        LabelMinutesView.__label.grid( row = 2, column = 1 )
+        LabelMinutesView.__label.grid( row = 3, column = 1 )

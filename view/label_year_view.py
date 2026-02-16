@@ -9,4 +9,4 @@ class LabelYearView :
 
     def create_label ( self ) :
         LabelYearView.__label = Label( LabelYearView.__window, text = 'год', padx = 20, pady = 4 )
-        LabelYearView.__label.grid( row = 0, column = 0 )
+        LabelYearView.__label.grid( row = 1, column = 0 )
