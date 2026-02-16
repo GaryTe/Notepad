@@ -16,4 +16,4 @@ class ButtonRejectView :
             justify = CENTER,
             command = ButtonRejectView.__handler_clean_field_form
             )
-        ButtonRejectView.__button.grid( padx = 4, pady = 4, row = 5, column = 0 )
+        ButtonRejectView.__button.grid( padx = 4, pady = 4, row = 6, column = 0 )

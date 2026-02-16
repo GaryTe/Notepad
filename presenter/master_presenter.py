@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.messagebox import showinfo
 
+from view.label_information_view import *
 from view.label_year_view import *
 from view.label_month_view import *
 from view.label_number_view import *
@@ -18,6 +19,7 @@ from model.event_notification_model import *
 
 class MasterPresenter :
     __window = Tk()
+    __label_information_view = LabelInformationView( __window )
     __label_year_view = LabelYearView( __window )
     __label_month_view = LabelMonthView( __window )
     __label_number_view = LabelNumberView( __window )
@@ -48,6 +50,8 @@ class MasterPresenter :
     def __initialization ( self ) :
         MasterPresenter.__window.title( 'Блокнот' )
         MasterPresenter.__window.resizable( 0, 0 )
+
+        MasterPresenter.__label_information_view.create_label()
 
         MasterPresenter.__label_year_view.create_label()
         MasterPresenter.__label_month_view.create_label()
@@ -92,13 +96,23 @@ class MasterPresenter :
             showinfo('Сообщение', 'Запись в блокнот не добавлена')
 
     def handler_writing_text ( self ) :
-        year = MasterPresenter.__entry_year_view.get_value()
-        month = MasterPresenter.__entry_month_view.get_value()
-        number = MasterPresenter.__entry_number_view.get_value()
+        is_year = MasterPresenter.__entry_year_view.is_valid()
+        is_month = MasterPresenter.__entry_month_view.is_valid()
+        is_number = MasterPresenter.__entry_number_view.is_valid()
+        is_hours = MasterPresenter.__entry_hours_view.is_valid()
+        is_minutes = MasterPresenter.__entry_minutes_view.is_valid()
 
-        hours = MasterPresenter.__entry_hours_view.get_value()
-        minutes = MasterPresenter.__entry_minutes_view.get_value()
+        if is_year and is_month and is_number and is_hours and is_minutes :
+            
+            year = MasterPresenter.__entry_year_view.get_value()
+            month = MasterPresenter.__entry_month_view.get_value()
+            number = MasterPresenter.__entry_number_view.get_value()
 
-        text = MasterPresenter.__text_view.get_text()
+            hours = MasterPresenter.__entry_hours_view.get_value()
+            minutes = MasterPresenter.__entry_minutes_view.get_value()
 
-        return f'{year}.{month}.{number} {hours}:{minutes}/ {text}'
+            text = MasterPresenter.__text_view.get_text()
+
+            return f'{year}.{month}.{number} {hours}:{minutes}/ {text}'
+        
+        return False

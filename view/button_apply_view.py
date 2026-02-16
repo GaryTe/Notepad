@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.messagebox import showwarning
 
 class ButtonApplyView :
     __window = None
@@ -18,10 +19,14 @@ class ButtonApplyView :
             justify = CENTER,
             command = self.__write_data
             )
-        ButtonApplyView.__button.grid( padx = 10, pady = 4, row = 5, column = 1 )
+        ButtonApplyView.__button.grid( padx = 10, pady = 4, row = 6, column = 1 )
 
     def __write_data ( self ) :
         data = ButtonApplyView.__handler_writing_text()
+
+        if not data :
+            showwarning('Сообщение', 'Исправьте значение в поле, которое выделено красным цветом.')
+            return
 
         with open('data_note.txt', 'a') as file :
             file.write(data)

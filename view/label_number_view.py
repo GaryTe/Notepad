@@ -9,4 +9,4 @@ class LabelNumberView :
 
     def create_label ( self ) :
         LabelNumberView.__label = Label( LabelNumberView.__window, text = 'число', padx = 20, pady = 4 )
-        LabelNumberView.__label.grid( row = 0, column = 2 )
+        LabelNumberView.__label.grid( row = 1, column = 2 )

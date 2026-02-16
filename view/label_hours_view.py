@@ -9,4 +9,4 @@ class LabelHoursView :
 
     def create_label ( self ) :
         LabelHoursView.__label = Label( LabelHoursView.__window, text = 'часы', padx = 20, pady = 4 )
-        LabelHoursView.__label.grid( row = 2, column = 0 )
+        LabelHoursView.__label.grid( row = 3, column = 0 )
