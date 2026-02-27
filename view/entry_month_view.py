@@ -1,6 +1,10 @@
+import re
+
 from tkinter import *
 
 class EntryMonthView :
+    __regex = re.compile(r'^0[1-9]$|10|11|12')
+
     __window = None
     __entry = None
 
@@ -8,10 +12,9 @@ class EntryMonthView :
         EntryMonthView.__window = window
 
     def is_valid ( self ):
-        value = EntryMonthView.__entry.get()
-        value = int(value)
+        value = EntryMonthView.__entry.get()[:2]
         
-        if value >= 0o1 and value <= 12 :
+        if EntryMonthView.__regex.match(value) != None :
             EntryMonthView.__entry.configure(background = 'white')
             return True
         else:
@@ -26,6 +29,6 @@ class EntryMonthView :
         EntryMonthView.__entry.delete(0, END)
 
     def get_value (self) :
-        value = EntryMonthView.__entry.get()
+        value = EntryMonthView.__entry.get()[:2]
 
         return value

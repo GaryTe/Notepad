@@ -1,6 +1,10 @@
+import re
+
 from tkinter import *
 
 class EntryYearView :
+    __regex = re.compile(r'^\d{4}$')
+
     __window = None
     __entry = None
 
@@ -8,9 +12,9 @@ class EntryYearView :
         EntryYearView.__window = window
 
     def is_valid ( self ):
-        value = EntryYearView.__entry.get()
+        value = EntryYearView.__entry.get()[:4]
         
-        if len(value) == 4:
+        if EntryYearView.__regex.match(value) != None:
             EntryYearView.__entry.configure(background = 'white')
             return True
         else:
@@ -25,6 +29,6 @@ class EntryYearView :
         EntryYearView.__entry.delete(0, END)
 
     def get_value ( self ) :
-        value = EntryYearView.__entry.get()
+        value = EntryYearView.__entry.get()[:4]
         
         return value
