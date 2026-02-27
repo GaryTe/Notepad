@@ -1,6 +1,10 @@
+import re
+
 from tkinter import *
 
 class EntryHoursView :
+    __regex = re.compile(r'^0[0-9]$|^1\d$|^2[0-3]$')
+
     __window = None
     __entry = None
 
@@ -8,10 +12,9 @@ class EntryHoursView :
         EntryHoursView.__window = window
 
     def is_valid ( self ):
-        value = EntryHoursView.__entry.get()
-        value = int(value)
+        value = EntryHoursView.__entry.get()[:2]
         
-        if value >= 00 and value <= 23 :
+        if EntryHoursView.__regex.match(value) != None :
             EntryHoursView.__entry.configure(background = 'white')
             return True
         else:
@@ -26,6 +29,6 @@ class EntryHoursView :
         EntryHoursView.__entry.delete(0, END)
 
     def get_value (self) :
-        value = EntryHoursView.__entry.get()
+        value = EntryHoursView.__entry.get()[:2]
 
         return value

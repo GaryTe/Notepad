@@ -1,6 +1,10 @@
+import re
+
 from tkinter import *
 
 class EntryNumberView :
+    __regex = re.compile(r'^0[1-9]$|^1\d$|^2\d$|^3[0-1]$')
+
     __window = None
     __entry = None
 
@@ -8,10 +12,9 @@ class EntryNumberView :
         EntryNumberView.__window = window
 
     def is_valid ( self ):
-        value = EntryNumberView.__entry.get()
-        value = int(value)
+        value = EntryNumberView.__entry.get()[:2]
         
-        if value >= 0o1 and value <= 31 :
+        if EntryNumberView.__regex.match(value) != None :
             EntryNumberView.__entry.configure(background = 'white')
             return True
         else:
@@ -26,6 +29,6 @@ class EntryNumberView :
         EntryNumberView.__entry.delete(0, END)
 
     def get_value (self) :
-        value = EntryNumberView.__entry.get()
+        value = EntryNumberView.__entry.get()[:2]
 
         return value
